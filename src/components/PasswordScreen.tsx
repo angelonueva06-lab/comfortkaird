@@ -62,9 +62,9 @@ export default function PasswordScreen({ onSuccess }: PasswordScreenProps) {
             <motion.p
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-red-400 text-xs text-center"
+              className="text-red-400 text-[10px] text-center leading-relaxed"
             >
-              Incorrect password. Hint: "comfort"
+              Incorrect password. Please coordinate to our official TikTok account: <span className="font-bold">@k.1ttt6</span>
             </motion.p>
           )}
 

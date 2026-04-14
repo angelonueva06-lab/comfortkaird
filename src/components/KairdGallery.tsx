@@ -70,14 +70,35 @@ export default function KairdGallery() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 flex items-center justify-center"
+                className="relative w-full max-w-sm aspect-[3/4] flex items-center justify-center"
               >
-                <div className="flex gap-2">
+                {/* Animated Deck Effect */}
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ x: 0, y: 0, rotate: 0 }}
+                    animate={{ 
+                      x: [0, (i - 2) * 40, 0],
+                      y: [0, (i % 2 === 0 ? -20 : 20), 0],
+                      rotate: [0, (i - 2) * 10, 0],
+                      scale: [1, 0.95, 1]
+                    }}
+                    transition={{ 
+                      duration: 0.8, 
+                      repeat: Infinity, 
+                      delay: i * 0.05,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 bg-white border border-stone-100 rounded-[2rem] shadow-md"
+                    style={{ zIndex: 5 - i }}
+                  />
+                ))}
+                <div className="z-10 flex gap-2">
                   {[0, 1, 2].map((i) => (
                     <motion.div
                       key={i}
                       animate={{
-                        y: [0, -15, 0],
+                        y: [0, -10, 0],
                         opacity: [0.3, 1, 0.3]
                       }}
                       transition={{
@@ -85,7 +106,7 @@ export default function KairdGallery() {
                         repeat: Infinity,
                         delay: i * 0.1
                       }}
-                      className="w-3 h-3 bg-stone-300 rounded-full"
+                      className="w-2 h-2 bg-stone-300 rounded-full"
                     />
                   ))}
                 </div>
@@ -106,8 +127,14 @@ export default function KairdGallery() {
         </motion.button>
       </main>
 
-      <footer className="mt-12 text-stone-300 text-xs font-sans tracking-widest uppercase">
-        Take a deep breath. You are doing fine.
+      <footer className="mt-16 flex flex-col items-center gap-4 text-center">
+        <p className="text-stone-300 text-xs font-sans tracking-widest uppercase">
+          Take a deep breath. You are doing fine.
+        </p>
+        <div className="text-stone-400 text-[10px] font-sans tracking-tight opacity-60">
+          <p>© 2026 Comfort Kaird. All rights reserved.</p>
+          <p className="mt-1">Made by KaiT</p>
+        </div>
       </footer>
     </div>
   );
